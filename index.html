@@ -403,7 +403,7 @@
                                         <option value="Produk">Katalog Produk</option>
                                     </select>
                                 </div>
-                                <p class="mt-3 mb-0" style="font-style: italic; font-size: 0.85rem; color: var(--mars-brown);">*Jam operasional: Senin - Sabtu, 09.00 - 20.00 WITA</p>                                
+                                <p class="mt-3 mb-0" style="font-style: italic; font-size: 0.85rem; color: var(--mars-brown);">*Jam operasional : Senin - Sabtu, 09.00 - 20.00 WITA</p>                                
                                 <button type="submit" class="btn btn-custom mt-4">Kirim Pesanan</button>
                             </form>
                         </div>
@@ -434,6 +434,14 @@
 
             hamburger.addEventListener('click', function() {
                 navMenu.classList.toggle('active');
+            });
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    if (window.innerWidth <= 768) {
+                        navMenu.classList.remove('active');
+                    }
+                });
             });
 
             const form = document.getElementById('reservationForm');
