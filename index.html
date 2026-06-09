@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* Palet Warna Mars */
         :root {
             --mars-burgundy: #6C1E26;
             --mars-cream: #F2E8D9;
@@ -29,7 +28,6 @@
             padding: 0;
         }
 
-        /* Header & Navigasi */
         header {
             background-color: var(--mars-brown);
             color: var(--mars-cream);
@@ -80,22 +78,21 @@
             color: #d1bfae;
         }
 
-        /* Responsif Hamburger Menu & Ponsel */
         @media (max-width: 768px) {
             #hamburger {
                 display: block;
-                margin-left: auto; /* Memaksa ikon rata kanan */
+                margin-left: auto;
             }
             nav {
                 position: absolute;
-                top: 60px; /* Tepat di bawah header */
+                top: 60px;
                 left: 0;
                 width: 100%;
             }
             nav ul {
                 display: none;
                 flex-direction: column;
-                background-color: var(--mars-burgundy);
+                background-color: var(--mars-brown);
                 padding: 10px 0;
                 width: 100%;
             }
@@ -103,8 +100,8 @@
                 display: flex;
             }
             nav ul li {
-                margin: 12px 0; /* Jarak atas-bawah */
-                text-align: center; /* Teks pilihan menu tetap di tengah */
+                margin: 12px 0;
+                text-align: center;
             }
             nav ul li a {
                 display: block;
@@ -112,7 +109,6 @@
             }
         }
 
-        /* Section Home (Tanpa Garis Bawah di Nama Merk) */
         #home {
             background: linear-gradient(rgba(108, 30, 38, 0.7), rgba(74, 44, 33, 0.8)), url('https://i.pinimg.com/736x/0f/4a/7b/0f4a7b3cbd23b4efc6e800b13e63c3ea.jpg') no-repeat center center;
             background-size: cover;
@@ -128,7 +124,6 @@
             text-transform: uppercase;
             letter-spacing: 4px;
             display: inline-block;
-            /* Garis bawah dihilangkan sesuai permintaan */
         }
 
         #home p {
@@ -139,7 +134,6 @@
             font-weight: 300;
         }
 
-        /* Section Portfolio */
         #portfolio {
             padding: 80px 0;
             background-color: var(--mars-cream);
@@ -164,7 +158,6 @@
             border: 3px solid var(--mars-light-brown);
         }
 
-        /* Section Reservation */
         #reservation {
             padding: 80px 0;
             background-color: var(--mars-burgundy);
@@ -232,30 +225,29 @@
             color: white;
         }
 
-        /* Footer Semantik - Ukuran Diperkecil */
         footer {
             background-color: var(--mars-brown);
             color: var(--mars-cream);
             text-align: center;
-            padding: 15px 20px; /* Padding dikurangi agar tidak memakan tempat */
+            padding: 15px 20px;
         }
 
         footer h3 {
-            margin: 0 0 5px 0; /* Jarak bawah dikurangi */
+            margin: 0 0 5px 0;
             letter-spacing: 1px;
             font-weight: 700;
-            font-size: 1.1rem; /* Ukuran font dikecilkan */
+            font-size: 1.1rem;
         }
 
         footer p {
-            font-size: 12px; /* Font size dikecilkan */
+            font-size: 12px;
             margin-bottom: 8px;
             color: #d1bfae;
         }
 
         .social-icons a {
             color: var(--mars-cream);
-            font-size: 16px; /* Ikon media sosial dikecilkan */
+            font-size: 16px;
             margin: 0 8px;
             transition: color 0.3s;
         }
@@ -436,7 +428,6 @@
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             
-            // Logika Hamburger Menu
             const hamburger = document.getElementById('hamburger');
             const navMenu = document.getElementById('nav-menu');
             const navLinks = document.querySelectorAll('#nav-menu li a');
@@ -445,16 +436,6 @@
                 navMenu.classList.toggle('active');
             });
 
-            // Tutup menu otomatis setelah klik (untuk layar mobile)
-            navLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    if (window.innerWidth <= 768) {
-                        navMenu.classList.remove('active');
-                    }
-                });
-            });
-
-            // Validasi Form Murni (Frontend)
             const form = document.getElementById('reservationForm');
             form.addEventListener('submit', function(event) {
                 event.preventDefault(); 
@@ -467,7 +448,6 @@
                 form.reset();
             });
 
-            // Smooth Scrolling
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
                     e.preventDefault();
