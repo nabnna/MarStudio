@@ -16,6 +16,7 @@
         * {
             box-sizing: border-box;
         }
+
         html, body {
             overflow-x: hidden;
             max-width: 100%;
@@ -67,6 +68,7 @@
             margin: 0;
             padding: 0;
             display: flex;
+            align-items: center;
         }
 
         nav ul li {
@@ -79,11 +81,15 @@
             font-weight: 600;
             text-transform: uppercase;
             font-size: 14px;
-            transition: color 0.3s;
+            padding: 6px 18px;
+            border-radius: 50px;
+            transition: all 0.3s ease;
         }
 
-        nav ul li a:hover {
-            color: #d1bfae;
+        nav ul li a:hover,
+        nav ul li a.active-menu {
+            background-color: var(--mars-cream);
+            color: var(--mars-brown) !important;
         }
 
         @media (max-width: 768px) {
@@ -112,7 +118,7 @@
                 text-align: center;
             }
             nav ul li a {
-                display: block;
+                display: inline-block;
                 font-size: 16px;
             }
         }
@@ -439,6 +445,7 @@
             const hamburger = document.getElementById('hamburger');
             const navMenu = document.getElementById('nav-menu');
             const navLinks = document.querySelectorAll('#nav-menu li a');
+            const sections = document.querySelectorAll("section");
 
             hamburger.addEventListener('click', function() {
                 navMenu.classList.toggle('active');
@@ -448,6 +455,24 @@
                 link.addEventListener('click', function() {
                     if (window.innerWidth <= 768) {
                         navMenu.classList.remove('active');
+                    }
+                });
+            });
+
+            window.addEventListener("scroll", () => {
+                let current = "";
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    if (window.scrollY >= sectionTop - 100) {
+                        current = section.getAttribute("id");
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove("active-menu");
+                    if (link.getAttribute("href").includes(current)) {
+                        link.classList.add("active-menu");
                     }
                 });
             });
