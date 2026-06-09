@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MarStudio</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* Palet Warna Mars */
+        :root {
+            --mars-burgundy: #6C1E26;
+            --mars-cream: #F2E8D9;
+            --mars-brown: #4A2C21;
+            --mars-light-brown: #8B5A43;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--mars-cream);
+            color: var(--mars-brown);
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Header & Navigasi */
+        header {
+            background-color: var(--mars-brown);
+            color: var(--mars-cream);
+            padding: 15px 30px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        header .logo {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        #hamburger {
+            font-size: 28px;
+            cursor: pointer;
+            display: none;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: var(--mars-cream);
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #d1bfae;
+        }
+
+        /* Responsif Hamburger Menu & Ponsel */
+        @media (max-width: 768px) {
+            #hamburger {
+                display: block;
+                margin-left: auto; /* Memaksa ikon rata kanan */
+            }
+            nav {
+                position: absolute;
+                top: 60px; /* Tepat di bawah header */
+                left: 0;
+                width: 100%;
+            }
+            nav ul {
+                display: none;
+                flex-direction: column;
+                background-color: var(--mars-burgundy);
+                padding: 10px 0;
+                width: 100%;
+            }
+            nav ul.active {
+                display: flex;
+            }
+            nav ul li {
+                margin: 12px 0; /* Jarak atas-bawah */
+                text-align: center; /* Teks pilihan menu tetap di tengah */
+            }
+            nav ul li a {
+                display: block;
+                font-size: 16px;
+            }
+        }
+
+        /* Section Home (Tanpa Garis Bawah di Nama Merk) */
+        #home {
+            background: linear-gradient(rgba(108, 30, 38, 0.7), rgba(74, 44, 33, 0.8)), url('https://i.pinimg.com/736x/0f/4a/7b/0f4a7b3cbd23b4efc6e800b13e63c3ea.jpg') no-repeat center center;
+            background-size: cover;
+            padding: 145px 20px 85px; 
+            text-align: center;
+            color: var(--mars-cream);
+        }
+
+        #home h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            display: inline-block;
+            /* Garis bawah dihilangkan sesuai permintaan */
+        }
+
+        #home p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 10px auto 0;
+            font-style: italic;
+            font-weight: 300;
+        }
+
+        /* Section Portfolio */
+        #portfolio {
+            padding: 80px 0;
+            background-color: var(--mars-cream);
+        }
+
+        .section-title {
+            text-align: center;
+            color: var(--mars-burgundy);
+            margin-bottom: 40px;
+            font-weight: 700;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.15);
+        }
+
+        .portfolio-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 24px;
+            transition: transform 0.3s;
+            border: 3px solid var(--mars-light-brown);
+        }
+
+        /* Section Reservation */
+        #reservation {
+            padding: 80px 0;
+            background-color: var(--mars-burgundy);
+            color: var(--mars-cream);
+        }
+
+        .reservation-card {
+            background-color: var(--mars-cream);
+            color: var(--mars-brown);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .price-box {
+        background-color: #ffffff;
+        padding: 30px 20px;
+        border-radius: 12px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        height: 100%;
+        color: var(--mars-brown);
+        transition: transform 0.3s;
+        }
+
+        .price-box h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--mars-burgundy);
+            margin-bottom: 15px;
+        }
+
+        .price-box .price {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: var(--mars-light-brown);
+            margin-top: 15px;
+        }
+
+        .form-label {
+            font-weight: 600;
+        }
+
+        .form-control, .form-select {
+            border: 1px solid var(--mars-light-brown);
+            margin-bottom: 15px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .btn-custom {
+            background-color: var(--mars-brown);
+            color: var(--mars-cream);
+            border: none;
+            padding: 12px 20px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
+            width: 100%;
+            border-radius: 6px;
+        }
+
+        .btn-custom:hover {
+            background-color: var(--mars-light-brown);
+            color: white;
+        }
+
+        /* Footer Semantik - Ukuran Diperkecil */
+        footer {
+            background-color: var(--mars-brown);
+            color: var(--mars-cream);
+            text-align: center;
+            padding: 15px 20px; /* Padding dikurangi agar tidak memakan tempat */
+        }
+
+        footer h3 {
+            margin: 0 0 5px 0; /* Jarak bawah dikurangi */
+            letter-spacing: 1px;
+            font-weight: 700;
+            font-size: 1.1rem; /* Ukuran font dikecilkan */
+        }
+
+        footer p {
+            font-size: 12px; /* Font size dikecilkan */
+            margin-bottom: 8px;
+            color: #d1bfae;
+        }
+
+        .social-icons a {
+            color: var(--mars-cream);
+            font-size: 16px; /* Ikon media sosial dikecilkan */
+            margin: 0 8px;
+            transition: color 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: var(--mars-light-brown);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a class="navbar-brand fw-bold fs-4" href="#home">MarStudio</a>
+        <span id="hamburger">&#9776;</span>
+        <nav>
+            <ul id="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#pricelist">Harga</a></li>
+                <li><a href="#reservation">Reservasi</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home">
+            <h1>MarStudio</h1>
+            <p>Kami menangkap momen Anda agar abadi melintasi ruang dan waktu.</p>
+        </section>
+
+        <section id="portfolio" class="container">
+            <h2 class="section-title">Portfolio Kami</h2>
+            <div class="row">
+                <div class="col-6 col-md-3">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80" alt="Foto Model" class="portfolio-img">
+                </div>
+                <div class="col-6 col-md-3">
+                    <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=400&q=80" alt="Foto Pernikahan" class="portfolio-img">
+                </div>
+                <div class="col-6 col-md-3">
+                    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=400&q=80" alt="Foto Pasangan" class="portfolio-img">
+                </div>
+                <div class="col-6 col-md-3">
+                    <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=400&q=80" alt="Foto Konseptual" class="portfolio-img">
+                </div>
+                <div class="col-6 col-md-3">
+                    <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=400&q=80" alt="Foto Fashion" class="portfolio-img">
+                </div>
+                <div class="col-6 col-md-3">
+                    <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=400&q=80" alt="Foto Portrait" class="portfolio-img">
+                </div>
+                <div class="col-6 col-md-3">
+                    <img src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?auto=format&fit=crop&w=400&q=80" alt="Foto Keluarga" class="portfolio-img">
+                </div>
+                <div class="col-6 col-md-3">
+                    <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=400&q=80" alt="Foto Studio" class="portfolio-img">
+                </div>
+            </div>
+        </section>
+
+        <section id="pricelist" class="container py-5">
+            <h2 class="section-title">Daftar Harga</h2>
+            
+            <div class="row justify-content-center g-4">
+                
+                <div class="col-12 col-md-4">
+                    <div class="price-box">
+                        <h3>Foto Personal</h3>
+                        <p>Sesi foto 45 menit, 10 foto edit, semua file digital</p>
+                        <p class="price">Rp 250.000</p>
+                    </div>
+                </div>
+                
+                <div class="col-12 col-md-4">
+                    <div class="price-box">
+                        <h3>Foto Keluarga</h3>
+                        <p>Sesi foto 1 jam, 10 foto edit, cetak 1 bingkai, semua file digital</p>
+                        <p class="price">Rp 650.000</p>
+                    </div>
+                </div>
+                
+                <div class="col-12 col-md-4">
+                    <div class="price-box">
+                        <h3>Pre-Wedding</h3>
+                        <p>Sesi foto 3 jam, 20 foto edit, video pre-wed, semua file digital</p>
+                        <p class="price">Rp 1.500.000</p>
+                    </div>
+                </div>
+                
+                <div class="col-12 col-md-4">
+                    <div class="price-box">
+                        <h3>Wisuda</h3>
+                        <p>Sesi foto 1 jam, 10 foto edit, cetak 1 bingkai, semua file digital</p>
+                        <p class="price">Rp 750.000</p>
+                    </div>
+                </div>
+                
+                <div class="col-12 col-md-4">
+                    <div class="price-box">
+                        <h3>Katalog Produk</h3>
+                        <p>Sesi foto 2 jam, 10 foto edit, video promosi, semua file digital</p>
+                        <p class="price">Rp 1.000.000</p>
+                    </div>
+                </div>
+                
+            </div>
+        </section>
+
+        <section id="reservation">
+            <div class="container">
+                <h2 class="section-title" style="color: var(--mars-cream);">Form Reservasi</h2>
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <div class="reservation-card">
+                            <form id="reservationForm">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="nama" class="form-label">Nama Lengkap</label>
+                                        <input type="text" id="nama" class="form-control" required placeholder="Nama Anda">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="email" class="form-label">Email</label>
+                                        <input type="email" id="email" class="form-control" required placeholder="email@contoh.com">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="tanggal" class="form-label">Tanggal Reservasi</label>
+                                        <input type="date" id="tanggal" class="form-control" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="waktu" class="form-label">Waktu Reservasi</label>
+                                        <select id="waktu" class="form-select" required>
+                                            <option value="" disabled selected>Pilih Jam</option>
+                                            <option value="09.30-10.30">09.30 - 10.30</option>
+                                            <option value="11.00-12.00">11.00 - 12.00</option>
+                                            <option value="13.15-14.15">13.15 - 14.15</option>
+                                            <option value="14.30-15.30">14.30 - 15.30</option>
+                                            <option value="16.00-17.00">16.00 - 17.00</option>
+                                            <option value="17.30-18.30">17.30 - 18.30</option>
+                                            <option value="19.00-20.00">19.00 - 20.00</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label for="layanan" class="form-label mt-2">Jenis Layanan</label>
+                                    <select id="layanan" class="form-select" required>
+                                        <option value="" disabled selected>Pilih Layanan</option>
+                                        <option value="Personal">Foto Personal</option>
+                                        <option value="Keluarga">Foto Keluarga</option>
+                                        <option value="Pre-Wedding">Pre-Wedding / Couple</option>
+                                        <option value="Wisuda">Wisuda</option>
+                                        <option value="Produk">Katalog Produk</option>
+                                    </select>
+                                </div>
+                                <p class="mt-3 mb-0" style="font-style: italic; font-size: 0.85rem; color: var(--mars-brown);">*Jam operasional: Senin - Sabtu, 09.00 - 20.00 WITA</p>                                
+                                <button type="submit" class="btn btn-custom mt-4">Kirim Pesanan</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <h3>MarStudio</h3>
+        <p>Copyrights 2026. All Rights Reserved.</p>
+        <div class="social-icons">
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            
+            // Logika Hamburger Menu
+            const hamburger = document.getElementById('hamburger');
+            const navMenu = document.getElementById('nav-menu');
+            const navLinks = document.querySelectorAll('#nav-menu li a');
+
+            hamburger.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+            });
+
+            // Tutup menu otomatis setelah klik (untuk layar mobile)
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    if (window.innerWidth <= 768) {
+                        navMenu.classList.remove('active');
+                    }
+                });
+            });
+
+            // Validasi Form Murni (Frontend)
+            const form = document.getElementById('reservationForm');
+            form.addEventListener('submit', function(event) {
+                event.preventDefault(); 
+                
+                const nama = document.getElementById('nama').value;
+                const waktu = document.getElementById('waktu').value;
+                alert(`Terima kasih, ${nama}! Permintaan reservasi Anda untuk MarStudio pada pukul ${waktu} telah berhasil dikirim.\nInformasi lebih lanjut akan kami kirimkan melalui email.`);
+                // Informasi lebih lanjut yaitu konfirmasi jadwal, ruang mana yang dipakai, persiapan sesi, dan detail pembayaran akan dikirimkan melalui email dalam 1 hari kerja.
+
+                form.reset();
+            });
+
+            // Smooth Scrolling
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 60,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+        });
+    </script>
+</body>
+</html>
